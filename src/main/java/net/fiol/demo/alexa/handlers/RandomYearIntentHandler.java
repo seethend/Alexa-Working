@@ -17,6 +17,7 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import net.fiol.demo.alexa.utils.AlexaUtils;
 import net.fiol.demo.models.NumberTrivia;
 import net.fiol.demo.services.NumbersAPIService;
+import net.fiol.demo.services.UserService;
 
 @Component
 public class RandomYearIntentHandler implements IntentHandler {
@@ -25,6 +26,8 @@ public class RandomYearIntentHandler implements IntentHandler {
 	@Autowired
 	private NumbersAPIService numbersService;
 	
+	@Autowired
+	private UserService userService;
 	
 	@Override
 	public SpeechletResponse handleIntent(Intent intent, IntentRequest request, Session session) {
@@ -32,8 +35,8 @@ public class RandomYearIntentHandler implements IntentHandler {
 		// Get some trivia about a random year between 1900 and today.
 		int year = AlexaUtils.randomInt(1900, LocalDate.now().getYear());		
 		NumberTrivia trivia = numbersService.getYearTrivia(year);
-		
-		Card card = AlexaUtils.newCard("Random Trivia", trivia.getText());
+		String email = userService.getEmail("Pramod");
+		Card card = AlexaUtils.newCard("Random Trivia" + email, trivia.getText());
 		PlainTextOutputSpeech speech = AlexaUtils.newSpeech(trivia.getText(), AlexaUtils.inConversationMode(session));
 
 		return AlexaUtils.newSpeechletResponse( card, speech, session, false);

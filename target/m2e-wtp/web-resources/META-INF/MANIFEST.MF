@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: AlexSpringBootWeb
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: ds00543754
+Implementation-Vendor-Id: net.fiol.demo
+Build-Jdk: 1.8.0_161
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/alexa-web
+Created-By: Maven Integration for Eclipse
+
